@@ -25,7 +25,7 @@ Route::get('/about', function () {
     return view('about', [
         "title" => "About",
         "name" => "Siti Komalasari",
-        "email" => "onyourmm@yahoo.com",
+        "email" => "203040078@mail.unpas.ac.id",
         "image" => "s.jpg"
     ]);
 });
@@ -34,4 +34,4 @@ Route::get('/about', function () {
 Route::get('/blog', [PostController::class, 'index']);
 
 // Halaman Single Post
-Route::get('posts/{slug}', [PostController::class, 'show']);
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
