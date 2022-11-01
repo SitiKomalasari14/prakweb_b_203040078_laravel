@@ -19,24 +19,26 @@ use App\Models\User;
 
 Route::get('/', function () {
     return view('home', [
-        "title" => "Home"
+        "title" => "Home",
+        "active" => "home"
     ]);
 });
 
 Route::get('/about', function () {
     return view('about', [
-        "title" => "About",
-        "name" => "Siti Komalasari",
-        "email" => "203040078@mail.unpas.ac.id",
-        "image" => "s.jpg"
+        'title' => 'About',
+        'active' => 'about',
+        'name' => 'Siti Komalasari',
+        'email' => '203040078@mail.unpas.ac.id',
+        'image' => 's.jpg'
     ]);
 });
 
 // POST
 Route::get('/blog', [PostController::class, 'index']);
-
 // Halaman Single Post
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
+Route::get('posts', [PostController::class, 'index']);
 
 
 // Category
@@ -49,19 +51,20 @@ Route::get('/categories', function () {
 });
 
 // Single Categories
-Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('posts', [
-        'title' => "Post by Category : $category->name",
-        'active' => 'categories',
-        'posts' => $category->posts->load('category', 'author')
-    ]);
-});
+// Route::get('/categories/{category:slug}', function (Category $category) {
+//     return view('posts', [
+//         'title' => "Post by Category : $category->name",
+//         'active' => 'categories',
+//         'posts' => $category->posts->load('category', 'author')
+//     ]);
+// });
 
 // AUTHOR
-Route::get('/authors/{author:username}', function (User $author) {
-    return view('posts', [
-        'title' => "Post by Author : $author->name",
-        'active' => 'categories',
-        'posts' => $author->posts->load('category', 'author'),
-    ]);
-});
+// Route::get('/authors/{author:username}', function (User $author) {
+//     return view('posts', [
+//         'title' => "Post by Author : $author->name",
+//         //'active' => 'categories',
+//         'active' => 'posts',
+//         'posts' => $author->posts->load('category', 'author'),
+//     ]);
+// });
